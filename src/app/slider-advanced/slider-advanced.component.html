@@ -1,0 +1,30 @@
+<div
+  class="slider"
+  (mousedown)="onMouseDown($event)"
+  (mousemove)="onMouseMove($event)"
+  (mouseup)="onMouseUp()"
+  (mouseleave)="onMouseUp()"
+>
+  <div (click)="goToPrevious()" class="leftArrow">❰</div>
+  <div (click)="goToNext()" class="rightArrow">❱</div>
+  <div
+    class="slide-container"
+    [style.transform]="'translateX(' + (-100 * currentIndex) + '%)'"
+  >
+    <div
+      *ngFor="let slide of slides"
+      class="slide"
+      [style.backgroundImage]="'url(' + slide.url + ')'"
+    ></div>
+  </div>
+</div>
+<div class="dotsContainer">
+  <div
+    *ngFor="let slide of slides; let slideIndex = index"
+    class="dot"
+    [ngClass]="{ active: currentIndex === slideIndex }"
+    (click)="goToSlide(slideIndex)"
+  >
+    ●
+  </div>
+</div>
